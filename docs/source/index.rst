@@ -19,7 +19,7 @@ determined; From this information, release fractions of RNs to the cover gas
 are evaluated. To invoke the real mixture assumption, the excess functions of the corresponding species are required in the database.
 
 Apart from source term calculations, the code can be used for the
-general purpose chemical equilibrium calculations with appropriate database. The project was started under the Reactor Shielding and Data Division (RSDD) at `Indira Gandhi Center for Atomic Research, India <http://www.igcar.gov.in/>`_ and an IAEA CRP on the subject. The source code is hosted on `GitHub <https://github.com/geekonloose/MINICHEM>`_. MINICHEM is distributed under GNU General Public License v3.0 
+general purpose chemical equilibrium calculations with appropriate database. The project was started under the Reactor Shielding and Data Division (RSDD) at `Indira Gandhi Center for Atomic Research, India <http://www.igcar.gov.in/>`_ and an IAEA CRP on the subject. The source code is hosted on `GitHub <https://github.com/parthigcar/MINICHEM>`_. MINICHEM is distributed under GNU General Public License v3.0 
 
 .. admonition:: Recommended publication for citing
    :class: tip
