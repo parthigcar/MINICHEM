@@ -1,0 +1,390 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Theory &mdash; MINICHEM 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"jax": ["input/TeX", "output/HTML-CSS"], "displayAlign": "center"})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Code structure" href="code_structure.html" />
+    <link rel="prev" title="Requirements" href="Requirements.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> MINICHEM
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Requirements.html">Requirements</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Theory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quadratic-gradient-descent-method">Quadratic gradient descent method:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="code_structure.html">Code structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running.html">Running the code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending_database.html">Extending database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending_database.html#references">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MINICHEM</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Theory</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/theory.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="theory">
+<h1>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h1>
+<p>The problem of determining the equilibrium concentration of various species
+given a set of input elements can be formulated in terms of either entropy,
+Gibbs or Helmholtz function. For example, if the system is defined in terms of
+temperature and pressure, then minimisation of Gibbs function is appropriate
+since temperature and pressure are independent variables of Gibbs function
+<a class="reference internal" href="extending_database.html#kenneth1956" id="id1"><span>[Kenneth1956]</span></a> . If the system is defined in terms of
+temperature and volume, then minimisation of Helmholtz function is appropriate.</p>
+<p>For a multi-phase system with <span class="math notranslate nohighlight">\(\mathrm{(x_1, x_2,\ldots, x_{N_g},\ldots
+x_{N_g + N_s})}\)</span> moles of <span class="math notranslate nohighlight">\(\mathrm{(N_g + N_s)}\)</span> species containing
+<span class="math notranslate nohighlight">\(\mathrm{N_e}\)</span> elements, the Helmholtz function to be minimized is as
+follows:</p>
+<div class="math notranslate nohighlight" id="equation-gibbs-cost-function">
+<span class="eqno">(1)<a class="headerlink" href="#equation-gibbs-cost-function" title="Permalink to this equation">¶</a></span>\[\begin{split}\mathrm{A_{system}(T, V)} &amp; = \mathrm{G - PV}\\
+            &amp; = \sum_{i = 1}^{\mathrm{N_s + N_g}}
+            \mu_i x_i - \mathrm{PV}\end{split}\]</div>
+<p>Where G is the Gibbs function. The system pressure P is in
+bars. Dividing Eq. <a class="reference internal" href="#equation-gibbs-cost-function">(1)</a> by RT, we get,</p>
+<div class="math notranslate nohighlight" id="equation-atilde">
+<span class="eqno">(2)<a class="headerlink" href="#equation-atilde" title="Permalink to this equation">¶</a></span>\[\mathrm{\tilde{A}(T, V)} = \frac{\mathrm{A_{system}}}{\mathrm{RT}}
+= \underbrace{\sum_{i = 1}^{\mathrm{N_s + N_g}}\tilde{\mu}_i x_i -
+\bar{x}^g}_{\mathrm{F(x)}}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\bar{x}^g\)</span> is the total number of moles of gas in the system.
+<span class="math notranslate nohighlight">\(\tilde{\mu}_i\)</span> is the reduced (dimension less) chemical
+potential and can be given in terms of their standard chemical potential
+functions as,</p>
+<div class="math notranslate nohighlight" id="equation-chem-pot">
+<span class="eqno">(3)<a class="headerlink" href="#equation-chem-pot" title="Permalink to this equation">¶</a></span>\[\begin{split}\tilde{\mu}_i =
+\begin{cases}
+    {\left(\tilde{\mu}^o\right)}_i^g + \ln\mathrm{\frac{RT}{V}}
+    + \ln x_i^g &amp; \text{for }i = 1, 2 \ldots, \mathrm{N_g} \\
+    {\left(\tilde{\mu}^{o}\right)}_{i}^{c} &amp;
+     \text{for }i = 1,2\ldots,\mathrm{N_s}
+\end{cases}\end{split}\]</div>
+<p>The superscript <strong>g</strong> and <strong>c</strong> are used for gaseous and condensed phase
+species. For example, <span class="math notranslate nohighlight">\(x_{i}^{g}\)</span> is the number of moles for
+<span class="math notranslate nohighlight">\(i^{th}\)</span> chemical species in gas phase.
+<span class="math notranslate nohighlight">\({\left(\tilde{\mu}^o\right)}_{i}^{g}\)</span> is chemical potential
+of <span class="math notranslate nohighlight">\(i^{th}\)</span> gaseous chemical species in gas phase at standard
+conditions. <span class="math notranslate nohighlight">\(\mathrm{N_s}\)</span> is the total number of the condensed species,
+<span class="math notranslate nohighlight">\(\mathrm{N_g}\)</span> is the total number of the species in the gaseous phase.</p>
+<p>While the free energy Eq. <a class="reference internal" href="#equation-atilde">(2)</a> is minimized to solve for
+equilibrium, the species have to satisfy non-negativity
+constraint <span class="math notranslate nohighlight">\(x_i\ge 0\)</span> and the constraint for element
+conservation given as,</p>
+<div class="math notranslate nohighlight" id="equation-constraint-equation">
+<span class="eqno">(4)<a class="headerlink" href="#equation-constraint-equation" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\underbrace{\sum_{i = 1}^{\mathrm{N_g}} a_{ij}^{g}
+x_{i}^{g} + \sum _{i = 1}^{\mathrm{N_s}} a_{ij}^{c}x_{i}^{c} =
+b_j}_{\mathrm{C_j(x)}}            &amp;&amp;j = 1, 2, 3\ldots, \mathrm{N_e}
+\end{align}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(a_{ij} ^{g}\)</span> is the number of atoms of <span class="math notranslate nohighlight">\(j^{th}\)</span> element in
+specie <span class="math notranslate nohighlight">\(i\)</span> in the gas phase and <span class="math notranslate nohighlight">\(a_{ij}^{c}\)</span> is the number of atoms
+of <span class="math notranslate nohighlight">\(j^{th}\)</span> element in <span class="math notranslate nohighlight">\(i^{th}\)</span> species with
+condensed phase. <span class="math notranslate nohighlight">\(b_j\)</span> is the total number of moles of element j, originally present in system mixture.
+The above free energy functions are minimised with two methods, viz., (1)
+Quadratic gradient descent method (2) sequential least square minimisation
+(SLSQP).</p>
+<div class="section" id="quadratic-gradient-descent-method">
+<h2>Quadratic gradient descent method:<a class="headerlink" href="#quadratic-gradient-descent-method" title="Permalink to this headline">¶</a></h2>
+<p>To minimise the free energy (Eq. <a class="reference internal" href="#equation-atilde">(2)</a>) of the system
+containing <span class="math notranslate nohighlight">\(\mathrm{(x_1, x_2,\ldots x_{N_g},
+\ldots,x_{N_g + N_s})}\)</span> moles of <span class="math notranslate nohighlight">\(\mathrm{N_g}\) + \(\mathrm{N_s}\)</span> species, with
+constraints described in Eq. <a class="reference internal" href="#equation-constraint-equation">(4)</a>, the method of
+Lagrange <span class="math notranslate nohighlight">\('\)</span> s underdetermined multipliers <a class="reference internal" href="extending_database.html#bertsekas2014" id="id2"><span>[Bertsekas2014]</span></a> <a class="reference internal" href="extending_database.html#weisstein2020" id="id3"><span>[Weisstein2020]</span></a> is used. Here, the formulation
+is given for constant temperature and constant volume problem. Formulation for
+constant pressure and constant temperature can be found in literature <a class="reference internal" href="extending_database.html#white1958" id="id4"><span>[White1958]</span></a> <a class="reference internal" href="extending_database.html#mcbride-and-gordon1996a" id="id5"><span>[McBride_and_Gordon1996a]</span></a> <a class="reference internal" href="extending_database.html#eriksson1979" id="id6"><span>[Eriksson1979]</span></a> <a class="reference internal" href="extending_database.html#eriksson-and-hack1990" id="id7"><span>[Eriksson_and_Hack1990]</span></a>.
+The Lagrangian function to be minimized can be written as,</p>
+<div class="math notranslate nohighlight" id="equation-eq-to-mini">
+<span class="eqno">(5)<a class="headerlink" href="#equation-eq-to-mini" title="Permalink to this equation">¶</a></span>\[\mathrm{L} = \mathrm{\tilde{A}} - \sum_{j=1}^{N_e}\pi_j C_j(x)\]</div>
+<p>Where, <span class="math notranslate nohighlight">\(\pi_j\)</span> are the undetermined multipliers. The partial
+derivatives of L with respect to <span class="math notranslate nohighlight">\(i^{th}\)</span> chemical species can be given
+after regrouping in terms of the gas species part and condensed species
+part as,</p>
+<div class="math notranslate nohighlight" id="equation-gas-part">
+<span class="eqno">(6)<a class="headerlink" href="#equation-gas-part" title="Permalink to this equation">¶</a></span>\[\frac{\partial L}{\partial x_i} = \mathrm{\frac{\partial L^g}
+{\partial x_i} +\frac{\partial L^c}{\partial x_i}}\]</div>
+<p>Where, the <span class="math notranslate nohighlight">\(\mathrm{\frac{\partial L^g}{\partial x_i}}\)</span> and
+<span class="math notranslate nohighlight">\(\mathrm{\frac{\partial L^c}{\partial x_i}}\)</span> are given by,</p>
+<div class="math notranslate nohighlight" id="equation-gas-langrage-multiplier">
+<span class="eqno">(7)<a class="headerlink" href="#equation-gas-langrage-multiplier" title="Permalink to this equation">¶</a></span>\[\begin{aligned}
+\mathrm{\frac{\partial L^g}{\partial x_i}} = (c_i + \ln x_i^g) -
+\sum_{j=1}^{\mathrm{N_e}}a_{ij}^{g}\pi_j = 0 &amp;&amp; i = 1,2\ldots,\mathrm{N_g}
+\end{aligned}\]</div>
+<div class="math notranslate nohighlight" id="equation-solid-langrage-multiplier">
+<span class="eqno">(8)<a class="headerlink" href="#equation-solid-langrage-multiplier" title="Permalink to this equation">¶</a></span>\[\begin{aligned}
+\mathrm{\frac{\partial L^c}{\partial x_i}}
+ = {\left(\tilde{\mu}^o\right)}_i^c - \sum_{j=1}^{\mathrm{N_e}}a_{ij}^{c}
+\pi_j = 0  &amp;&amp;i= 1,2\ldots,\mathrm{N_s}
+\end{aligned}\]</div>
+<p>Where,</p>
+<div class="math notranslate nohighlight" id="equation-c-i">
+<span class="eqno">(9)<a class="headerlink" href="#equation-c-i" title="Permalink to this equation">¶</a></span>\[c_i = {\left(\tilde{\mu}^o\right)}_i^g + \ln\mathrm{\frac{RT}{V}}\]</div>
+<p>To linearize Eq. <a class="reference internal" href="#equation-gas-langrage-multiplier">(7)</a>, Taylor series
+expansion about <span class="math notranslate nohighlight">\(y_{i}^{g}\)</span> is carried out, which results,</p>
+<div class="math notranslate nohighlight" id="equation-taylor-expansion">
+<span class="eqno">(10)<a class="headerlink" href="#equation-taylor-expansion" title="Permalink to this equation">¶</a></span>\[\begin{align}
+f_i + \frac{x_i^g}{y_i^g} - 1 - \sum_{j=1}^{\mathrm{N_e}}a_{ij}^{g}\pi_j
+= 0             &amp;&amp;i = 1,2\ldots,\mathrm{N_g}
+\end{align}\]</div>
+<p>Where, <span class="math notranslate nohighlight">\(f_{i}\)</span> can be given as,</p>
+<div class="math notranslate nohighlight" id="equation-fi">
+<span class="eqno">(11)<a class="headerlink" href="#equation-fi" title="Permalink to this equation">¶</a></span>\[f_i = c_i + \ln y_i^g\]</div>
+<p>From the Taylor expanded form, the improved mole numbers for the next
+iteration can be obtained from the rearranged Eq. <a class="reference internal" href="#equation-taylor-expansion">(10)</a></p>
+<div class="math notranslate nohighlight" id="equation-improved-x">
+<span class="eqno">(12)<a class="headerlink" href="#equation-improved-x" title="Permalink to this equation">¶</a></span>\[x_i^g = -f_i y_i^g + y_i^g
+\left(\sum_{i=1}^{\mathrm{N_g}} \pi _{j} a_{ij}^{g} + 1\right)\]</div>
+<p>Substituting Eq. <a class="reference internal" href="#equation-improved-x">(12)</a> in Eq. <a class="reference internal" href="#equation-constraint-equation">(4)</a> we have,</p>
+<div class="math notranslate nohighlight" id="equation-r-matrix-equation">
+<span class="eqno">(13)<a class="headerlink" href="#equation-r-matrix-equation" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\sum_{k=1}^{\mathrm{N_e}} r_{jk} \pi_k
++ \sum_{i=1}^{\mathrm{N_s}} a_{ij}^{c}x_{i}^{c} &amp; = b_j
++ \sum_{i=1}^{\mathrm{N_g}} a_{ij}^{g} f_i y_i^g
+- \sum_{i=1}^{\mathrm{N_g}}a_{ij}^{g}y_i^g      &amp;&amp;j= 1,2\ldots, \mathrm{N_e}
+\end{align}\]</div>
+<p>Where,</p>
+<div class="math notranslate nohighlight" id="equation-r-ij">
+<span class="eqno">(14)<a class="headerlink" href="#equation-r-ij" title="Permalink to this equation">¶</a></span>\[\begin{align}
+r_{jk} &amp; = r_{kj} = \sum_{i=1}^{\mathrm{N_g}}
+(a_{ij}^{g}a_{ik}^{g})y_{i}^{g} \text{          }j = 1, 2\ldots, \mathrm{N_e}
+\end{align}\]</div>
+<p>The Eqs. <a class="reference internal" href="#equation-solid-langrage-multiplier">(8)</a> and <a class="reference internal" href="#equation-r-matrix-equation">(13)</a> are
+solved simultaneously to get <span class="math notranslate nohighlight">\(\pi _j\)</span> and <span class="math notranslate nohighlight">\(x_i^c\)</span>. Using
+<span class="math notranslate nohighlight">\(\pi _j\)</span>, updated values of <span class="math notranslate nohighlight">\(x^g\)</span> are obtained
+using Eq. <a class="reference internal" href="#equation-improved-x">(12)</a>. Here, it should be noted that the formulation of
+condensed species is such that, the moles of each condensed phase species is
+directly obtained from the solution of Eq. <a class="reference internal" href="#equation-solid-langrage-multiplier">(8)</a> and
+<a class="reference internal" href="#equation-r-matrix-equation">(13)</a>, without applying any correction.
+If all <span class="math notranslate nohighlight">\(x^g\)</span> values are positive, they are considered as the guessed value for the next iteration. If not, then guessed values are corrected with the following Eq.as <a class="reference internal" href="extending_database.html#gunnar-eriksson1971" id="id8"><span>[Gunnar_Eriksson1971]</span></a>,</p>
+<div class="math notranslate nohighlight" id="equation-y-i-improved">
+<span class="eqno">(15)<a class="headerlink" href="#equation-y-i-improved" title="Permalink to this equation">¶</a></span>\[y_{i, improved}^{p} = y^{p}_{i} + \lambda (x^{p}_{i} - y^{p}_{i})\]</div>
+<p>Where, p is the phase of chemical species (gaseous
+species <strong>g</strong> or condensed species <strong>c</strong>). The <span class="math notranslate nohighlight">\(\lambda\)</span> is
+the correction factor, and can be given according
+to <a class="reference internal" href="extending_database.html#gunnar-eriksson1971" id="id9"><span>[Gunnar_Eriksson1971]</span></a>,</p>
+<div class="math notranslate nohighlight" id="equation-lambda">
+<span class="eqno">(16)<a class="headerlink" href="#equation-lambda" title="Permalink to this equation">¶</a></span>\[\lambda = 0.99 \lambda ' (1 - 0.5 \lambda ')\]</div>
+<p>Where, <span class="math notranslate nohighlight">\(\lambda '\)</span> is the value required for the next step to
+remain positive as given by,</p>
+<div class="math notranslate nohighlight" id="equation-lambda-dash">
+<span class="eqno">(17)<a class="headerlink" href="#equation-lambda-dash" title="Permalink to this equation">¶</a></span>\[\lambda ' = \min_{i}\left(\frac{y^{g,c}_{i} }{(y^{g,c}_{i} - x^{g,c}_{i})}
+\right)\]</div>
+<p>The corrected values of <span class="math notranslate nohighlight">\(y^g\)</span> are considered for the next
+iteration. Since, in the above formulation, the set of condensed species is
+not known beforehand, for the first iteration, only gaseous species
+equilibrium is obtained. In subsequent iterations, species are added such that
+they reduce overall system <span class="math notranslate nohighlight">\('\)</span> s free energy. This can be assured by <a class="reference internal" href="extending_database.html#mcbride-and-gordon1996a" id="id10"><span>[McBride_and_Gordon1996a]</span></a> <a class="reference internal" href="extending_database.html#gunnar-eriksson1971" id="id11"><span>[Gunnar_Eriksson1971]</span></a>,</p>
+<div class="math notranslate nohighlight" id="equation-test-for-condesed-sp">
+<span class="eqno">(18)<a class="headerlink" href="#equation-test-for-condesed-sp" title="Permalink to this equation">¶</a></span>\[{\left(\tilde{\mu}^o\right)}_i^c -
+\sum_{j=1}^{\mathrm{N_e}}\pi_{j}b_{j} \le 0\]</div>
+<p>Sometimes with particular species, the combination can lead to a set of the
+dependent Eqs.in the formulation. Set of dependent species are identified
+with the help of reduced row echelon form. Subsequently, dependent species, as
+well as the matching combination of dependent species present in species set,
+are removed temporarily, and only species which decrease overall free energy
+of the system is included in species set. For example, species set containing,
+U (L), <span class="math notranslate nohighlight">\(\mathrm{UO_{2}(L)}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{U_4O_9(III)}\)</span>,
+leads to linear dependence and all three species are removed, and species
+which lower free energy of the system are included in species set.</p>
+<p>The above Helmholtz function minimization subjected to mole number
+conservation constraint is implemented in python and the code is hereafter
+referred to as <strong>MINICHEM</strong> (MINImisation of CHEMical potentials). Once the equilibrium species moles in various
+phases are determined, the release fraction of
+the <span class="math notranslate nohighlight">\(\mathrm{j^{th}}\)</span> chemical species are determined as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+\text{Elemental release fraction = }\mathrm{{RF(e)}_j} =
+\frac{{\sum\limits}_{i} \text{Number of moles of
+\(j^{th}\) element in \(i^{th}\) gaseous species}}{\text{Total mole
+inventory of \(j^{th}\) element}}
+\end{aligned}\]</div>
+<p>The isotopic release fraction is defined as,</p>
+<div class="math notranslate nohighlight">
+\[\text{Isotopic release fraction }{RF(iso)}_k = {\mathrm{RF(e)}_j} \times
+\text{isotopic fraction of \(k^{th}\) isotope}\]</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="code_structure.html" class="btn btn-neutral float-right" title="Code structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Requirements.html" class="btn btn-neutral float-left" title="Requirements" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Parthkumar Patel, A. John Arul
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

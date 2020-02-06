@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Running the code &mdash; MINICHEM 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"jax": ["input/TeX", "output/HTML-CSS"], "displayAlign": "center"})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Extending database" href="extending_database.html" />
+    <link rel="prev" title="Code structure" href="code_structure.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> MINICHEM
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory.html">Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_structure.html">Code structure</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Running the code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#defining-input-inventory">Defining input inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#defining-temperature-pressure-volume-parameters">Defining temperature, pressure, volume parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#method">Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trace">Trace</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extending_database.html">Extending database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending_database.html#references">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MINICHEM</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Running the code</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/running.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="running-the-code">
+<h1>Running the code<a class="headerlink" href="#running-the-code" title="Permalink to this headline">¶</a></h1>
+<p>Before running the code, please check <a class="reference internal" href="Requirements.html#requirements"><span class="std std-ref">Requirements</span></a>, for the necessary python packages required to run the code. To run this program following files are required:</p>
+<ul class="simple">
+<li><p>chem_parse.py</p></li>
+<li><p>data_process.py</p></li>
+<li><p>mini.py</p></li>
+<li><p>plot_hv.py</p></li>
+<li><p>pythormoread.py</p></li>
+<li><p>rf.py</p></li>
+<li><p>species_search.py</p></li>
+<li><p>stoichiometric_coeff_matrix_generator.py</p></li>
+</ul>
+<p>MINICHEM uses following input file.</p>
+<p><strong>Input file:</strong></p>
+<ul class="simple">
+<li><p>thermo_chemical_database.txt</p></li>
+</ul>
+<p>The code generates following output files.</p>
+<p><strong>Output files:</strong></p>
+<ul class="simple">
+<li><p>iom.txt: Gives the released mole, RF, and details about considered and released species.</p></li>
+<li><p>released_sp.txt: Gives the released species mole</p></li>
+<li><p>released_mole_el.txt: element wise result of the released mole.</p></li>
+</ul>
+<div class="section" id="defining-input-inventory">
+<h2>Defining input inventory<a class="headerlink" href="#defining-input-inventory" title="Permalink to this headline">¶</a></h2>
+<p>The input inventory can be specified by modifying the input1 list in <code class="docutils literal notranslate"><span class="pre">minichemp.py</span></code>. Each list input element should be specified as string starting with its the mole number followed by the element name.</p>
+<p>For example,</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">input1</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2H&#39;</span><span class="p">,</span> <span class="s1">&#39;1N&#39;</span><span class="p">,</span> <span class="s1">&#39;1O&#39;</span><span class="p">]</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="defining-temperature-pressure-volume-parameters">
+<h2>Defining temperature, pressure, volume parameters<a class="headerlink" href="#defining-temperature-pressure-volume-parameters" title="Permalink to this headline">¶</a></h2>
+<p>For each case ((T, P) or (T, V)), the temperature (in K), P (in bars) and V (in <span class="math notranslate nohighlight">\(m^3\)</span>) needs to specified, even if one of these parameter is redundant.</p>
+</div>
+<div class="section" id="method">
+<h2>Method<a class="headerlink" href="#method" title="Permalink to this headline">¶</a></h2>
+<p>MINICHEM can calculate (T, P) or (T, V) chemical equilibrium using two method:
+1. Quadratic gradient descent minimising method
+2. Sequential Quadratic Programming</p>
+<p>For this, there are two switch provided named <code class="docutils literal notranslate"><span class="pre">method</span></code> and <code class="docutils literal notranslate"><span class="pre">switch</span></code>
+- The valid value for the <code class="docutils literal notranslate"><span class="pre">method</span></code> is <code class="docutils literal notranslate"><span class="pre">SLSQP</span></code> or <code class="docutils literal notranslate"><span class="pre">MINI</span></code> (which calculates chemical equilibrium using <cite>Quadratic gradient descent minimising method</cite>)
+- The valid value for the <code class="docutils literal notranslate"><span class="pre">switch</span></code> is <code class="docutils literal notranslate"><span class="pre">TP</span></code> or <code class="docutils literal notranslate"><span class="pre">TV</span></code>.</p>
+</div>
+<div class="section" id="trace">
+<h2>Trace<a class="headerlink" href="#trace" title="Permalink to this headline">¶</a></h2>
+<p>By default the value of <code class="docutils literal notranslate"><span class="pre">trace</span></code> is set to <span class="math notranslate nohighlight">\(10^{-25}\)</span>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="extending_database.html" class="btn btn-neutral float-right" title="Extending database" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="code_structure.html" class="btn btn-neutral float-left" title="Code structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Parthkumar Patel, A. John Arul
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

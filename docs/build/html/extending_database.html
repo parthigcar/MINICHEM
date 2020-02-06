@@ -1,0 +1,243 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Extending database &mdash; MINICHEM 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"jax": ["input/TeX", "output/HTML-CSS"], "displayAlign": "center"})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Running the code" href="running.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> MINICHEM
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory.html">Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_structure.html">Code structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running.html">Running the code</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Extending database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#references">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MINICHEM</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Extending database</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/extending_database.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="extending-database">
+<h1>Extending database<a class="headerlink" href="#extending-database" title="Permalink to this headline">¶</a></h1>
+<p>Since, the thermochemical database is fed via dictionary (<code class="docutils literal notranslate"><span class="pre">dict_of_all_sp_grt</span></code>), the thermochemical database can be easily modified by either providing NASA 9 polynomial in <code class="docutils literal notranslate"><span class="pre">thermo_dict</span></code> or directly providing chemical potentials to <code class="docutils literal notranslate"><span class="pre">dict_of_all_sp_grt</span></code> at specified temperature.</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">thermo_dict</span><span class="p">,</span> <span class="n">stoichiometric_dict</span> <span class="o">=</span> <span class="n">pythermoread</span><span class="o">.</span><span class="n">thermoread</span><span class="p">()</span>
+<span class="n">dict_of_all_sp_grt</span> <span class="o">=</span> <span class="n">pythermoread</span><span class="o">.</span><span class="n">calculate_grt</span><span class="p">(</span><span class="n">grt_dict</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">thermo_dict</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+<dl class="citation">
+<dt class="label" id="kenneth1956"><span class="brackets">Kenneth1956</span></dt>
+<dd><p>Kenneth Denbigh, 1956. The Principles of Chemical Equilibrium, with Applications in Chemistry and Chemical Engineering., <span class="math notranslate nohighlight">\(4^{th}\)</span> Edition. Cambridge University Press, Cambridge.</p>
+</dd>
+<dt class="label" id="bertsekas2014"><span class="brackets">Bertsekas2014</span></dt>
+<dd><p>Bertsekas, D. P., 2014. Constrained Optimization and Lagrange Multiplier Methods. Academic Press.</p>
+</dd>
+<dt class="label" id="weisstein2020"><span class="brackets">Weisstein2020</span></dt>
+<dd><p>Weisstein, E. W., 2020. Lagrange Multiplier. <a class="reference external" href="http://mathworld.wolfram.com/LagrangeMultiplier.html">http://mathworld.wolfram.com/LagrangeMultiplier.html</a>.</p>
+</dd>
+<dt class="label" id="white1958"><span class="brackets">White1958</span></dt>
+<dd><p>White, W. B., Johnson, S. M., Dantzig, G. B., 1958. Chemical Equilibrium in Complex Mixtures. The Journal of Chemical Physics 28 (5), 751–755.</p>
+</dd>
+<dt class="label" id="mcbride-and-gordon1996a"><span class="brackets">McBride_and_Gordon1996a</span></dt>
+<dd><p>McBride, B. J., Gordon, S., 1996b. Computer Program for Calculation of Complex Chemical Equilibrium Compositions and Applications-II: User Manual and Program Description. Vol. 2. National Aeronautics and Space Administration, Office of Management, Scientific and Technical Information Program, Cleveland, Ohio, 44135.</p>
+</dd>
+<dt class="label" id="eriksson1979"><span class="brackets">Eriksson1979</span></dt>
+<dd><p>Eriksson, G., 1979. An algorithm for the computation of aqueous multi-component, multiphase equilibria. Analytica Chimica Acta 112 (4), 375–383.</p>
+</dd>
+<dt class="label" id="eriksson-and-hack1990"><span class="brackets">Eriksson_and_Hack1990</span></dt>
+<dd><p>Eriksson, G., Hack, K., 1990. ChemSage—a computer program for the calculation of complex chemical equilibria. Metallurgical transactions B 21 (6), 1013–1023.</p>
+</dd>
+<dt class="label" id="gunnar-eriksson1971"><span class="brackets">Gunnar_Eriksson1971</span></dt>
+<dd><p>Gunnar Eriksson, 1971. Thermodynamic Studies of High Temperature Equilibria. III. SOLGAS, a Computer Program for Calculating the Composition and Heat Condition of an Equilibrium Mixture. Acta Chemica Scandinavica 25, 2651–2658.</p>
+</dd>
+</dl>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="running.html" class="btn btn-neutral float-left" title="Running the code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Parthkumar Patel, A. John Arul
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

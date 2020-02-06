@@ -1,0 +1,2 @@
+sphinx-numfig
+sphinx_rtd_theme

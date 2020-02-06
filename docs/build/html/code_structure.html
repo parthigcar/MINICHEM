@@ -1,0 +1,600 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Code structure &mdash; MINICHEM 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"jax": ["input/TeX", "output/HTML-CSS"], "displayAlign": "center"})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Running the code" href="running.html" />
+    <link rel="prev" title="Theory" href="theory.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> MINICHEM
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory.html">Theory</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Code structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pymakelib">PyMakelib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pythermoread">PyThermoread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#species-search">Species search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stoichiometric-coefficient-matrix-generator">Stoichiometric coefficient matrix generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mini">MINI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rf">RF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plotting">Plotting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="running.html">Running the code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending_database.html">Extending database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending_database.html#references">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MINICHEM</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Code structure</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/code_structure.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="code-structure">
+<h1>Code structure<a class="headerlink" href="#code-structure" title="Permalink to this headline">¶</a></h1>
+<p>The MINICHEM is written in Python 3.7.1. However it is also tested with
+Python &gt;= 3.7.1. Main modules of the MINICHEM are given in the
+<a class="reference internal" href="#id1"><span class="std std-numref">Fig. 1</span></a>. Each of module is explained in the subsequent section.</p>
+<div class="figure align-center" id="id1">
+<img alt="_images/code_structure_low_res.png" src="_images/code_structure_low_res.png" />
+</div>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pymakelib">
+<h3>PyMakelib<a class="headerlink" href="#pymakelib" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Filename:</span> <span class="pre">pymakelib.py</span></code></p>
+<p>This module reads <code class="docutils literal notranslate"><span class="pre">NASA's</span> <span class="pre">CEA</span> <span class="pre">thermochemical</span> <span class="pre">database</span></code> file named <code class="docutils literal notranslate"><span class="pre">thermo.inp</span></code>. This module is translated version of the original Fortran <code class="docutils literal notranslate"><span class="pre">makelib.f</span></code> module (available in CEA code package). The data for the gas phase is extrapolated for the higher temperature. The restructured data is stored in <code class="docutils literal notranslate"><span class="pre">thermochemical_database.txt</span></code>.</p>
+</div>
+<div class="section" id="pythermoread">
+<h3>PyThermoread<a class="headerlink" href="#pythermoread" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Filename:</span> <span class="pre">pythermoread.py</span></code></p>
+<p>This module reads extrapolated thermochemical databases in <code class="docutils literal notranslate"><span class="pre">thermochemical_database.txt</span></code> and calculates the chemical potentials and stoichiometric values at the specified temperature. These calculated chemical potentials for the respective species are stored in the dictionary named as: <code class="docutils literal notranslate"><span class="pre">grt_dict</span></code> and <code class="docutils literal notranslate"><span class="pre">stoichiometric_dict</span></code>. Following are the functions are part of the pythermoread.</p>
+<dl class="function">
+<dt>
+<code class="sig-name descname">HRT(a1, a2, a3, a4, a5, a6, a7, b1, b2, t):</code></dt>
+<dd><p>Finds the value of <span class="math notranslate nohighlight">\(\frac{H}{RT}\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a1</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>a2</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>a3</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>a4</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>a5</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>a6</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>a7</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>b1</strong> – Integration coefficient</p></li>
+<li><p><strong>b2</strong> – Integration coefficient</p></li>
+<li><p><strong>t</strong> – Temperature (K)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the value of <span class="math notranslate nohighlight">\(\frac{H}{RT}\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">SR(a1, a2, a3, a4, a5, a6, a7, b1, b2, t):</code></dt>
+<dd><p>Finds the value of <span class="math notranslate nohighlight">\(\frac{S}{R}\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a1</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>a2</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>a3</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>a4</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>a5</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>a6</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>a7</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>b1</strong> – Integration coefficient</p></li>
+<li><p><strong>b2</strong> – Integration coefficient</p></li>
+<li><p><strong>t</strong> – Temperature (K)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the value of <span class="math notranslate nohighlight">\(\frac{S}{R}\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">GRT1(a1, a2, a3, a4, a5, a6, a7, b1, b2, temp):</code></dt>
+<dd><p>Calculates the thermochemical potential from the specified 9 polynomial
+coefficients and the temperature information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a1</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>a2</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>a3</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>a4</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>a5</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>a6</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>a7</strong> – <span class="math notranslate nohighlight">\(C_p\)</span> coefficient</p></li>
+<li><p><strong>b1</strong> – Integration coefficient</p></li>
+<li><p><strong>b2</strong> – Integration coefficient</p></li>
+<li><p><strong>temp</strong> – Temperature (K)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns thermochemical potential from the specified 9 polynomial coefficient and temperature.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">thermoread():</code></dt>
+<dd><p>From the <code class="docutils literal notranslate"><span class="pre">thermochemical_database.txt</span></code>, this function reads all NASA 9 polynomial thermochemical potentials for the all the chemical species and converts this database into the dictionary. This function also returns the stoichiometric data for all the thermochemical species.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">thermo_dict</span></code>, <code class="docutils literal notranslate"><span class="pre">stiochemitric_dict</span></code>. Dictionary containing all NASA 9 polynomial coefficients and stoichiometric coefficient information for all chemical species specified in <code class="docutils literal notranslate"><span class="pre">thermochemical_database.txt</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">calculate_grt(grt_dict, input_temp, thermo_dict):</code></dt>
+<dd><p>The function calculates the chemical potential using <code class="docutils literal notranslate"><span class="pre">thermo_dict</span></code> at specified input temperature and returns in the form of dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grt_dict</strong> – Dictionary to store the thermochemical potentials at specified temperature</p></li>
+<li><p><strong>input_temp</strong> – input temperature at which the chemical potential to be calculated.</p></li>
+<li><p><strong>thermo_dict</strong> – dictionary containing NASA 9 polynomial thermochemical
+database.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">grt_dict</span></code>. Dictionary containing the chemical potentials at the specified temperature.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">only_grt(grt_dict, strlist):</code></dt>
+<dd><p>This function provides functionality to calculate the chemical equilibrium for the desired chemical species only. The function takes the input of the complete combination of the input element as dictionary and the list of desired species which we want to calculate the thermochemical equilibrium. The function will delete other species combination.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grt_dict</strong> – all combination of input1 from thermochem lib</p></li>
+<li><p><strong>strlist</strong> – list of the desired elements</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">grt_dict</span></code>, updated <code class="docutils literal notranslate"><span class="pre">grt_dict</span></code>, which only contains <span class="math notranslate nohighlight">\(\frac{g}{RT}\)</span> data of the desired elements which are in <code class="docutils literal notranslate"><span class="pre">strlist</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="species-search">
+<h3>Species search<a class="headerlink" href="#species-search" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Filename:</span> <span class="pre">species_search.py</span></code></p>
+<p>In order to calculate the chemical equilibrium using the given input chemical elements/species, list of possible species which are combination of the input chemical elements/species. This module finds the combination of the input chemical elements/species from the grt_dict species list.</p>
+<dl class="function">
+<dt>
+<code class="sig-name descname">combination_search(species, grt_dict, combination_sp):</code></dt>
+<dd><p>Searches the combination of the input elements in the <code class="docutils literal notranslate"><span class="pre">grt_dict</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>species</strong> – List of species for which combination search will be taken out</p></li>
+<li><p><strong>grt_dict</strong> – Dictionary of the chemical potentials</p></li>
+<li><p><strong>combination_sp</strong> – list of combination of species</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">combination_sp</span></code>, list of species containing combination of species list.</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p>If species is H2O,
+Then the combinations in <code class="docutils literal notranslate"><span class="pre">grt_dict</span></code> might be: OH, H2O2, H, O2 etc.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">el(species):</code></dt>
+<dd><p>The function takes the input species (list form), and convert
+the element of the list which can be compound/element to the element.
+INPUT: species (list)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="stoichiometric-coefficient-matrix-generator">
+<h3>Stoichiometric coefficient matrix generator<a class="headerlink" href="#stoichiometric-coefficient-matrix-generator" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Filename:</span> <span class="pre">stoichiometric_coeff_matrix_generator.py</span></code></p>
+<p>This module generates the stoichiometric coefficient. The module contains following functions:</p>
+<dl class="function">
+<dt>
+<code class="sig-name descname">stoi(species, input1, stoichiometric_dict):</code></dt>
+<dd><p>Makes one row of the stoichiometry coefficient.</p>
+<p>:param species:List of species (species containing combination of the input elements)
+:param input1: list of the elements provided as input.
+:param stoichiometric_dict: dictionary of the species with the information
+:returns:list of the row of the stoichiometric matrix</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">make_ac(input1, b, considered_sp_c, stoichiometric_dict):</code></dt>
+<dd><p>Makes stoichiometry matrix for the condensed species.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input1</strong> – list of the input elements (provided by user)</p></li>
+<li><p><strong>b</strong> – input element inventory value (provided by user)</p></li>
+<li><p><strong>considered_sp_c</strong> – set of considered species in the condensed phase</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns a_c</dt>
+<dd class="field-even"><p>condensed stoichiometry matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">test_for_dependence(a_c, inds, input1, b, stoichiometric_dict,</code></dt>
+<dt>
+<code class="sig-name descname">sp_c, dict_of_all_sp_grt, a, pis, initial_sp_c,</code></dt>
+<dt>
+<code class="sig-name descname">total_sp_c):</code></dt>
+<dd><p>Sometimes the two or more dependent species in the condensed stoichiometric coefficient matrix can occurs, this can make the condensed stoichiometric coefficient matrix singular. This function checks the <code class="docutils literal notranslate"><span class="pre">a_c</span></code> matrix for the dependent row, and returns the list of the
+dependent rows as well as the list of the dependent species.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a_c</strong> – condensed part of stoichiometric coefficient matrix</p></li>
+<li><p><strong>inds</strong> – Indices which are found to be dependent (calculated from the reduced row echelon form)</p></li>
+<li><p><strong>input1</strong> – list of the input elements (provided by user)</p></li>
+<li><p><strong>b</strong> – input element inventory value (provided by user)</p></li>
+<li><p><strong>stoichiometric_dict</strong> – dictionary of the species with the information</p></li>
+<li><p><strong>sp_c</strong> – list of the condensed chemical species</p></li>
+<li><p><strong>dict_of_all_sp_grt</strong> – dictionary containing chemical potential of the all chemical species at the specified temperature</p></li>
+<li><p><strong>a</strong> – gas part of the stoichiometric coefficient matrix</p></li>
+<li><p><strong>pis</strong> – list of the <span class="math notranslate nohighlight">\(\pi _i\)</span></p></li>
+<li><p><strong>initial_sp_c</strong> – list of the all condensed species in the dict_of_all_sp_grt</p></li>
+<li><p><strong>total_sp_c</strong> – list of the all condensed chemical species which are being considered for the equilibrium calculation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>updated <code class="docutils literal notranslate"><span class="pre">a_c</span></code>, updated list <code class="docutils literal notranslate"><span class="pre">sp_c</span></code>, updated list <code class="docutils literal notranslate"><span class="pre">total_sp_c</span></code>, returns the list of dependent species in the a_c matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="mini">
+<h3>MINI<a class="headerlink" href="#mini" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Filename:</span> <span class="pre">mini.py</span></code></p>
+<p>This module contains necessary functions to calculate the thermochemical equilibrium using the <code class="docutils literal notranslate"><span class="pre">Quadratic</span> <span class="pre">gradient</span> <span class="pre">descent</span> <span class="pre">minimisation</span> <span class="pre">method</span></code> and <code class="docutils literal notranslate"><span class="pre">SLSQP</span></code> method. The calculation using SLSQP method is performed using built in <code class="docutils literal notranslate"><span class="pre">scipy</span></code> module named <code class="docutils literal notranslate"><span class="pre">scipy.optimize.optimize</span></code>. The major functions <code class="docutils literal notranslate"><span class="pre">MINI</span></code> module are described below:</p>
+<dl class="function">
+<dt>
+<code class="sig-name descname">mini_solver(input1, b, sp_g, INSERT, total_sp_c, a, a_g, trace,</code></dt>
+<dt>
+<code class="sig-name descname">dict_of_all_sp_grt, initial_sp_c, grt_dict,</code></dt>
+<dt>
+<code class="sig-name descname">stoichiometric_dict, switch,</code></dt>
+<dt>
+<code class="sig-name descname">temperature, v=0, pressure=1):</code></dt>
+<dd><p>Determines the equilibrium species in from given input elment/species list. The function contain <code class="docutils literal notranslate"><span class="pre">sd_tv</span></code> and <code class="docutils literal notranslate"><span class="pre">sd_tp</span></code> sub-functions, which basically calculates the equilibrium species for the (T, V) and (T, P) cases respectively.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input1</strong> – list of the element in the inventory</p></li>
+<li><p><strong>b</strong> – inventory of the elements specified as input</p></li>
+<li><p><strong>sp_g</strong> – list of the gaseous species considered</p></li>
+<li><p><strong>INSERT</strong> – initial list of the condensed species, from which the iteration starts. This speeds up the convergence if the several equilibrium species are known before hand.</p></li>
+<li><p><strong>total_sp_c</strong> – list of the all condensed species
+considered for the equilibrium calculation</p></li>
+<li><p><strong>a</strong> – condensed part of the stoichiometric matrix</p></li>
+<li><p><strong>a_g</strong> – gaseous part of the stoichiometric matrix</p></li>
+<li><p><strong>trace</strong> – min. amount of the allowed mole number</p></li>
+<li><p><strong>dict_of_all_sp_grt</strong> – chemical potential dictionary of the all chemical species at the specified temperature.</p></li>
+<li><p><strong>initial_sp_c</strong> – initial list of the considered condensed chemical species</p></li>
+<li><p><strong>grt_dict</strong> – chemical potential dictionary of the all chemical specis at the specified temperature.</p></li>
+<li><p><strong>stoichiometric_dict</strong> – dictionary consisting the stoimetric data for the all the chemical species</p></li>
+<li><p><strong>temperature</strong> – specified temperature</p></li>
+<li><p><strong>v</strong> – system volume</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">y</span></code>, Equilibrium mole number species wise. <code class="docutils literal notranslate"><span class="pre">sp_g</span></code>, list of the gaseous phase species. <code class="docutils literal notranslate"><span class="pre">sp_c</span></code>, list of the condensed phase species.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">min_fun_helmholtz(x, species, grt_dict, temperature, v):</code></dt>
+<dd><p>This function calculates helmholtz function for the guessed array x containing mole numbers at each iteration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – array containing mole numbers</p></li>
+<li><p><strong>species</strong> – list of species</p></li>
+<li><p><strong>grt_dict</strong> – dictionary of chemical potential for all the chemical species</p></li>
+<li><p><strong>temperature</strong> – specified temperature</p></li>
+<li><p><strong>v</strong> – system volume</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>helmholtz function value for x</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">gibbs_calculate(x, species, grt_dict, temperature, P):</code></dt>
+<dd><p>This function calculates Gibbs function for the guessed array x containing mole numbers at each iteration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – array containing mole numbers</p></li>
+<li><p><strong>species</strong> – list of species</p></li>
+<li><p><strong>grt_dict</strong> – dictionary of chemical potential for all the chemical species</p></li>
+<li><p><strong>temperature</strong> – specified temperature</p></li>
+<li><p><strong>P</strong> – system pressure</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Gibbs function value</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="rf">
+<h3>RF<a class="headerlink" href="#rf" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Filename:</span> <span class="pre">rf.py</span></code></p>
+<p>This module takes the output equilibrium mole number array as input and calculates the release fractions in the cover gas.</p>
+<dl class="function">
+<dt>
+<code class="sig-name descname">rf(y, species, input1, stoichiometric_dict, el_inventory):</code></dt>
+<dd><p>Takes the output mole number array and returns the dictionary with the
+release fraction in the cover gas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y</strong> – output array containing mole number</p></li>
+<li><p><strong>species</strong> – list of the species considered</p></li>
+<li><p><strong>input1</strong> – list of the element initially considered.</p></li>
+<li><p><strong>stoichiometric_dict</strong> – dictionary containing the stoichiometric information for the all the chemical species.</p></li>
+<li><p><strong>el_inventory</strong> – dictionary containing the information
+about the input inventory specified.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Prints the cover gas release fractions and writes the output in
+the iom.txt, released_mole_el.txt, released_sp.txt</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="plotting">
+<h3>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Filename:</span> <span class="pre">plot_hv.py</span></code></p>
+<p>This module plots the sankey charts using <code class="docutils literal notranslate"><span class="pre">holoviews</span></code> module.</p>
+<dl class="function">
+<dt>
+<code class="sig-name descname">plot_hv(input1, stoichiometric_dict, include_el, opfilename,</code></dt>
+<dt>
+<code class="sig-name descname">Min=0, Max=1e9):</code></dt>
+<dd><p>Plotting module</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input1</strong> – list of input elements</p></li>
+<li><p><strong>include_el</strong> – list of element for which sankey chart is drawn</p></li>
+<li><p><strong>Min</strong> – min mole number species to be included in chart</p></li>
+<li><p><strong>Max</strong> – max mole number species to be included in chart</p></li>
+<li><p><strong>opfilename</strong> – opfilename</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>saves sankey chart</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="running.html" class="btn btn-neutral float-right" title="Running the code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="theory.html" class="btn btn-neutral float-left" title="Theory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Parthkumar Patel, A. John Arul
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
