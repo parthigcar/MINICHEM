@@ -24,7 +24,7 @@ general purpose chemical equilibrium calculations with appropriate database. The
 .. admonition:: Recommended publication for citing
    :class: tip
 
-   Patel, P.R., Arul, A.J., In-vessel source term calculation for a hypothetical core disruptive accident using chemical equilibrium approach for a medium sized sodium cooled fast reactor. Submitted to Nuclear Engg. & Design 25.
+   Patel, P.R., Arul, A.J., In-vessel source term calculation using chemical equilibrium approach for a medium sized sodium cooled fast reactor. Submitted to Nuclear Engg. & Design 25.
 
 
 .. only:: html
