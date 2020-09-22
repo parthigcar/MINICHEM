@@ -14,7 +14,7 @@ Complete documentation on the usage of MINICHEM is hosted on
 If you use MINICHEM in your research, please consider giving proper attribution by
 citing the following publication:
 
-```Patel, P.R., Arul, A.J., In-vessel source term calculation using chemical equilibrium approach for a medium sized sodium cooled fast reactor. Submitted to Nuclear Engg. & Design 25.```
+```P.R. Patel, A. John Arul, In-vessel source term calculation using chemical equilibrium approach for a medium sized sodium cooled fast reactor, Nuclear Engineering and Design. 362 (2020) 110583. https://doi.org/10.1016/j.nucengdes.2020.110583.```
 
 ## Troubleshooting
 
